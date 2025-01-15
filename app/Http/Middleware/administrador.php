@@ -17,10 +17,9 @@ class administrador
     public function handle(Request $request, Closure $next): Response
     {
         
-            if(auth()->check()  && Auth::user()->hasRole('admin')){
+            if(auth()->check() && Auth::user()->hasRole('admin')){
                 return $next($request);
          }
-        return redirect('/');
-        
+         return redirect('/')->with('error', 'No tienes acceso a esta sección');
     }
 }
